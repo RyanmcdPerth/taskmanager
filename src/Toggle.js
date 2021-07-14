@@ -12,6 +12,29 @@ class Toggle extends Component {
           subText: "The button is off"
         }
     }
+    componentDidMount() {
+      const json = localStorage.getItem('toggleText');
+      const toggleText = JSON.parse(json);
+      if(toggleText) {
+        this.setState(() => ({toggleText}));
+        }
+        const json2 = localStorage.getItem('subText');
+        const subText = JSON.parse(json2);
+        if(subText) {
+          this.setState(() => ({subText}));
+          }
+      }
+    
+    componentDidUpdate() {
+        const json = JSON.stringify(this.state.toggleText);
+        localStorage.setItem('toggleText', json);
+        const json2 = JSON.stringify(this.state.subText);
+        localStorage.setItem('subText', json2);
+    }
+    
+
+
+    
         toggleVisibility() {
             if (this.state.visibility) {
             
