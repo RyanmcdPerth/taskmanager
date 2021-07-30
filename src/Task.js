@@ -1,16 +1,61 @@
 import React from 'react';
 import EditTask from './EditTask';
-import {useState} from 'react';
+import DeleteTask from './DeleteTask';
+import { useState } from 'react';
 
-function Task({ task, index, onTglStatus, showTaskEdit, setShowTaskEdit, onHandleChangeInput, onHandleSubmit, onShowTaskEdit}) {
+function Task({ task, onTglStatus, showTaskEdit, setShowTaskEdit, onHandleChangeInput, onHandleSubmit, onShowTaskEdit, setDesc, setDate, onDeleteTask, handleDelete, tasks, id }) {
+  const [editTask, setEditTask] = useState(undefined)
+  const [deleteTask, setDeleteTask] = useState(undefined)
+  {
 
-  
+  const onHandleEdit =(desc, date)=>{
+    setEditTask(
+      //      { desc: task.dec, date: task.date, id: tasks.length, complete: false },
+      //      ...tasks,
+      //   ]);
+      // };
+        //  task.map((editTask) => {
+               task.desc = desc,
+               task.date = date,
+                // return editTask
+                console.log("I am here")
+           
+          );
+    setEditTask(undefined)
+
+  }
+
+  const onDeleteTask = (task) => {
+    setDeleteTask(tasks => {
+      const tasky = [...tasks]; // create new array based on current tasks
+      let index = tasky.findIndex(function(task){return index});
+      tasky.splice(index, 1); // remove task by inde
+      console.log("I am here");
+      return tasky; // return altered array
+      
+});
+    
+
+
+
+  };
+
+
+
   return (
     <div className="card text-left" >
-      <button className="button" key={task.id} onClick={() => onShowTaskEdit(task)}>Edit Task </button>
-      {task.done && <EditTask index = {index} onHandleSubmit={onHandleSubmit} task={{}}/>}
+      <button className="button-blue" 
+      onClick={() => 
+      {
+        setEditTask(task); setShowTaskEdit(!showTaskEdit);}}>
+        {/* {!showTaskEdit && "Edit Task"}
+        {showTaskEdit && "➖"*/} Edit Task</button> 
+      {editTask && showTaskEdit && <EditTask index={index} onHandleEdit={onHandleEdit} task={{}} />}
+      {/* <button className="button" onClick={() => handleDelete(task)}> Delete Task </button> */}
+      
+     {/* deleteTask && /*}
 
- {/* onHandleSubmit={onHandleSubmit} */}
+      {/* onHandleSubmit={onHandleSubmit} */}
 
       <div className="row">
         <div className="col-10">
@@ -21,7 +66,7 @@ function Task({ task, index, onTglStatus, showTaskEdit, setShowTaskEdit, onHandl
               alt="calendar"
             />
             {task.date}
-            
+
           </div>
         </div>
 
@@ -32,17 +77,18 @@ function Task({ task, index, onTglStatus, showTaskEdit, setShowTaskEdit, onHandl
               alt="Open"
             />
           </button> */}
-  <button className="button icon-only clear" onClick={() => onTglStatus(task)}>
-  {task.complete && "✅"}
-  {!task.complete && "⬜"}
-</button>
+          <button className="button icon-only clear" onClick={() => onTglStatus(task)}>
+            {task.complete && "✅"}
+            {!task.complete && "⬜"}
+          </button>
         </div>
         <div className="col-12">
           <p>{task.remarks}</p>
         </div>
       </div>
+      <DeleteTask onDeleteTask={onDeleteTask} tasks={tasks} id={id} task={{}}/>
     </div>
-  );
-  }
-  export default Task;
-  
+  )};
+        }  
+      
+export default Task;

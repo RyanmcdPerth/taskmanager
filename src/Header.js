@@ -1,12 +1,13 @@
+import './App.css';
 import React, { Component } from 'react';
 
 function Header() {
     return (
       <div>
-        <nav className="nav">
-          <div className="nav-left">
-            <a className="brand" href="#">
-             My Task Management App
+        <nav className="customsd">
+          <div className="customsd">
+            <a className="customsd" href="#">
+             Taskimanager
             </a>
           </div>
           <div className="nav-right">

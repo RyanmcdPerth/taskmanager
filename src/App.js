@@ -28,9 +28,9 @@ import { useEffect } from "react";
 function App() {
   const [tasks, setTasks] = useState([
     { desc: "Learn React", id: '0', date: "2021-01-03 10:00", status: "Complete", remarks: "this is a test" },
-    { desc: "Profit", id: '1', date: "2021-01-05 15:00", status: "Open", remarks: "this is a test2" },
+    // { desc: "Profit", id: '1', date: "2021-01-05 15:00", status: "Open", remarks: "this is a test2" },
   ]);
-
+const index = tasks.length;
 
   const onTglStatus = (task) => {
     console.log("completing task");
@@ -72,21 +72,25 @@ function App() {
       { desc: desc, date: date, id: tasks.length, complete: false },
       ...tasks,
     ]);
+    setShowTaskAdd(!showTaskAdd)
     // tasks.map((taskId) => { taskId.id = taskId;
     // return taskId; })
   };
 
-  const onHandleSubmit = (task) => {
-    const newTasks = [...tasks];
-
-    setTasks(
-      newTasks.map((editTask) => {
-           editTask.desc = task.desc; 
-           editTask.date = task.date;
-            return editTask;
+  // const onHandleSubmit = (task) => {
+  //    const newTasks = [...tasks];
+  //     setTasks(
+  //   //     { desc: task.dec, date: key.date, id: tasks.length, complete: false },
+  //   //     ...tasks,
+  //   //   ]);
+  //   // };
+  //     newTasks.map((editTask) => {
+  //           editTask.desc = id.desc; 
+  //         editTask.date = id.date;
+  //            return editTask;
          
-      }));
-    };
+  //      }));
+  //    };
 
   //     [{ desc: desc, date: date, id: tasks.length, complete: false },
   //     ...tasks]);
@@ -106,10 +110,10 @@ function App() {
     <div className="App">
       <Header></Header>
       <div className="container">
-        <Tasks tasks={tasks} onTglStatus={onTglStatus} setShowTaskEdit={setShowTaskEdit} showTaskEdit={showTaskEdit} onSaveTask={onSaveTask} onHandleChangeInput={onHandleChangeInput} onHandleSubmit={onHandleSubmit} onShowTaskEdit={onShowTaskEdit} />
+        <Tasks tasks={tasks} index={index} onTglStatus={onTglStatus} setShowTaskEdit={setShowTaskEdit} showTaskEdit={showTaskEdit} onSaveTask={onSaveTask} onHandleChangeInput={onHandleChangeInput} onShowTaskEdit={onShowTaskEdit} id={id} />
         <div className="col-12 text-left">
           <button
-            className="button primary"
+            className="button-blue"
             onClick={() => setShowTaskAdd(!showTaskAdd)}>
             {!showTaskAdd && "Create New Task"}
             {showTaskAdd && "➖"}

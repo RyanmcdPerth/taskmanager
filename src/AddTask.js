@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from "react";
 
-function AddTask({ task, onSaveTask }) {
+function AddTask({ task, onSaveTask, setShowTaskAdd, ShowTaskAdd }) {
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
 
   const saveTask = (e) => {
     e.preventDefault();
     onSaveTask({ desc: desc, date: date });
+    // setShowTaskAdd = !ShowTaskAdd;
 
     setDesc("");
     setDate("");

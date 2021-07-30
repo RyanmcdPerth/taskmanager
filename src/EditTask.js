@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
+import './App.css';
 import { useState } from "react";
 import Tasks from './Tasks';
 import Task from './Task';
 
-function EditTask({ task, onHandleSubmit }) {
+function EditTask({ task, onHandleEdit }) {
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
-
+  const id = task.id;
 
    const handleChangeInput = (e) => {
      e.preventDefault();
@@ -14,16 +15,15 @@ function EditTask({ task, onHandleSubmit }) {
      setDate(e.target.value);
    };
 
-  const handleSubmit = (task) => {
-    task.preventDefault();
+  const handleSubmit = (e) => {
+    // e.preventDefault();
      if(task) {
-          onHandleSubmit({ desc, date });
+          onHandleEdit(desc, date);
 
-           setDesc("");
-           setDate("");
+            setDesc("");
+            setDate("");
+            console.log("I am here1")
     };
-
-
 
   }
     // const handleSubmit = event => {
@@ -72,7 +72,7 @@ function EditTask({ task, onHandleSubmit }) {
         />
 
         <div className="text-right">
-          <button className="button dark" key={task.id} onClick={handleSubmit}>
+          <button className="button-blue" key={task.id} onClick={() => handleSubmit(task)}>
             Save
           </button>
         </div>

@@ -2,7 +2,7 @@
  import Task from './Task';
  import App from './App';
 
- function Tasks({ tasks, onTglStatus, showTaskEdit, setShowTaskEdit, onSaveTask, onHandleChangeInput, onHandleSubmit, onShowTaskEdit}) {
+ function Tasks({ tasks, onTglStatus, showTaskEdit, setShowTaskEdit, onSaveTask, onHandleChangeInput, onHandleSubmit, onShowTaskEdit, id}) {
   
   return (
     <div className="row">
@@ -11,7 +11,7 @@
       </div>
       <div>
       {tasks.map((task, index) => (
-        <Task task={task} key={task.id} index = {index} onTglStatus={onTglStatus} setShowTaskEdit={setShowTaskEdit} showTaskEdit={showTaskEdit} onSaveTask={onSaveTask} onHandleChangeInput={onHandleChangeInput} onHandleSubmit={onHandleSubmit} onShowTaskEdit = {onShowTaskEdit} />
+        <Task task={task} key={task.id} index={index} onTglStatus={onTglStatus} setShowTaskEdit={setShowTaskEdit} showTaskEdit={showTaskEdit} onSaveTask={onSaveTask} onHandleChangeInput={onHandleChangeInput} onHandleSubmit={onHandleSubmit} onShowTaskEdit = {onShowTaskEdit} tasks={tasks} id={id} />
       ))}
       <div className="col-12"></div>
       </div>
